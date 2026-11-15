@@ -27,7 +27,11 @@ function montarMenuUsuario() {
             <i class="fa-regular fa-user"></i>
             <span class="user-btn-text">Entrar / Cadastrar</span>`;
         botao.onclick = function () {
-            window.location.href = 'login.html';
+            if (document.getElementById('authModal') && typeof abrirModalCadastro === 'function') {
+                abrirModalCadastro();
+            } else {
+                window.location.href = 'login.html';
+            }
         };
         return;
     }
