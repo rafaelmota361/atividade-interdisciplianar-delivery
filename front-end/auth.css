@@ -132,6 +132,49 @@
     border: 1px solid #84e1bc;
 }
 
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2500;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.auth-modal-overlay.hidden {
+    display: none !important;
+}
+
+.auth-modal-overlay .auth-card {
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
+}
+
+.auth-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #777777;
+    cursor: pointer;
+}
+
+.auth-modal-close:hover {
+    color: #54131D;
+}
+
 .hidden {
     display: none;
 }
