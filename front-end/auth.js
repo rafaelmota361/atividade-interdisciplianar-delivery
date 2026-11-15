@@ -38,7 +38,7 @@ if (cadastroForm) {
             if (response.ok) {
                 showAlert('Cadastro realizado com sucesso! Redirecionando para login...', false);
                 setTimeout(function () {
-                    window.location.href = 'login.html';
+                    window.location.href = document.getElementById('authModal') ? 'front-end/login.html' : 'login.html';
                 }, 1500);
             } else {
                 showAlert(data.mensagem || 'Erro ao realizar cadastro.');
@@ -109,3 +109,36 @@ function aplicarMascara(input, formatar) {
 
 aplicarMascara(document.getElementById('cpf'), formatarCpf);
 aplicarMascara(document.getElementById('telefone'), formatarTelefone);
+
+const authModal = document.getElementById('authModal');
+
+function hideAuthAlert() {
+    const alertBox = document.getElementById('authAlert');
+    if (alertBox) alertBox.classList.add('hidden');
+}
+
+function abrirModalCadastro() {
+    if (!authModal) return;
+    hideAuthAlert();
+    authModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharModalCadastro() {
+    if (!authModal) return;
+    authModal.classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+if (authModal) {
+    const closeAuthModalBtn = document.getElementById('closeAuthModalBtn');
+    if (closeAuthModalBtn) closeAuthModalBtn.addEventListener('click', fecharModalCadastro);
+
+    authModal.addEventListener('click', function (e) {
+        if (e.target === authModal) fecharModalCadastro();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !authModal.classList.contains('hidden')) fecharModalCadastro();
+    });
+}
